@@ -1,0 +1,11 @@
+{
+  "name": "vue-rig",
+  "version": "0.0.1-alpha",
+  "description": "rig",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "gaston",
+  "license": "ISC"
+}
