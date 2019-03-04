@@ -4,8 +4,34 @@
   "description": "rig",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "./node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "^js$": "../script/vue.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ]
   },
   "author": "gaston",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^24.1.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^24.1.0",
+    "vue": "^2.6.7",
+    "vue-template-compiler": "^2.6.7"
+  },
+  "dependencies": {
+    "vuex": "^3.1.0"
+  }
 }

@@ -1,0 +1,30 @@
+{
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": ["last 2 versions", "> 5% in BE"],
+            "uglify": false
+          },
+          "modules": false
+        }
+      ]
+    ],
+    "plugins": ["syntax-dynamic-import" ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    }
+  }
+  
