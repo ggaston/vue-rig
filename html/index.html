@@ -8,23 +8,29 @@
 </head>
 <body>
 
-    <script id="app-data" type="text/json">
+    <script id="pricelist-pre" type="application/json">
         {
-            "products": [
-                { "price": 123 },
-                { "price": 234 },
-                { "price": 345 }
-            ],[
-                { "price": 456 },
-                { "price": 567 },
-                { "price": 789 }    
-            ]
+           "pre-1" : { "price": 123 },
+           "pre-2" : { "price": 234 },
+           "pre-3" : { "price": 345 }
+        }
+    </script>
+    <script id="pricelist-ise" type="application/json">
+        {
+           "ise-1" : { "price": 666 },
+           "ise-2" : { "price": 777 },
+           "ise-3" : { "price": 999 }
         }
     </script>
     <div id="app">
-        <p>{{$store.state.msg}}</p>
-        <p v-html="price">ASD</p>
+        <li>{{product.price}}</li>
+
+        <button v-on:click="updateProduct('pre-1')">product 1</button>
+        <button v-on:click="updateProduct('pre-2')">product 2</button>
+        <button v-on:click="updateProduct('pre-3')">product 3</button>
     </div>
+
+    
 
     <script src="script/vue.js"></script>
     <script src="script/vuex.js"></script>

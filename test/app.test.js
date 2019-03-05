@@ -1,5 +1,5 @@
-import Vue from "vue";
-import App from '../script/app.js'
+import Vue from "../src/vue.js";
+import App from '../src/app.js'
 
 describe('app', () => {
     let cmp, vm;
