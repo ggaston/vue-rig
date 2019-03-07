@@ -1,6 +1,15 @@
 // Import Vue for unit test. Jest requires 
 import Vue from "./vue.js"
 
+Vue.component('component-x', {
+    data: function () {
+        return {
+          msg: 'Hello'
+        }
+      },
+      template: '#[data-x]'
+})
+
 var vm = window.vm = new Vue({
     el: '#app',
     data: function() {
