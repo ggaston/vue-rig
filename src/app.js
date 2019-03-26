@@ -1,5 +1,13 @@
 // Import Vue for unit test. Jest requires 
-import Vue from "./vue.js"
+import Vue from './vue.js';
+import Vuex from 'vuex';
+
+
+var store = new Vuex.Store({
+    state: {
+        products: []
+    }
+})
 
 Vue.component('component-x', {
     data: function () {

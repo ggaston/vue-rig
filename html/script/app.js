@@ -1,9 +1,22 @@
-(function (Vue) {
+(function (Vue, Vuex) {
     'use strict';
 
     Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
+    Vuex = Vuex && Vuex.hasOwnProperty('default') ? Vuex['default'] : Vuex;
 
     // Import Vue for unit test. Jest requires 
+
+
+    var store = new Vuex.Store({
+        state: {
+            products: []
+        },
+        mutations: {
+            selectProduct(state, id) {
+                return this.state.id;
+            }
+        }
+    });
 
     Vue.component('component-x', {
         data: function () {
@@ -33,4 +46,4 @@
         }
     });
 
-}(Vue));
+}(Vue, Vuex));
