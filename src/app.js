@@ -1,38 +1,55 @@
 // Import Vue for unit test. Jest requires 
 import Vue from './vue.js';
-import Vuex from 'vuex';
-
-
-var store = new Vuex.Store({
-    state: {
-        products: []
-    }
-})
 
 Vue.component('component-x', {
-    data: function () {
-        return {
-          msg: 'Hello'
-        }
-      },
-      template: '#[data-x]'
+    template: '#component-x'
 })
 
 var vm = window.vm = new Vue({
-    el: '#app',
+    /**
+     * Mount element instead of hooking with el prop.
+     */
+    /**
+     * Data should be only state.
+     * {} 
+     */
+    template: '#x-template',
     data: function() {
         return {
             product: {},
-            priceList: {}
+            priceList: {},
+            headline: "Headline"
         }        
     },
     created() {
+        // TODO: Use ref attr for pricelist element
         this.priceList = document.getElementById('pricelist-pre');
-        this.product = JSON.parse(this.priceList.innerHTML)['pre-1'];
+        this.products = JSON.parse(this.priceList.innerHTML)['pre-1'];
     },
     methods: {
         updateProduct: function(productId){
             this.product = JSON.parse(this.priceList.innerHTML)[productId];
+        },
+        incrementMaintenance: function() {
+
+        },
+        decrementMaintenance: function() {
+
+        },
+        incrementDevices: function() {
+
+        },
+        decrementDevices: function() {
+            
+        },
+        setMaintenance: function(maintennace) {
+
+        },
+        setDevices: function(devices) {
+        
         }
     }
 });
+
+
+vm.$mount('#app3', true);

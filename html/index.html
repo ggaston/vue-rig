@@ -22,6 +22,7 @@
            "ise-3" : { "price": 999 }
         }
     </script>
+
     <div id="app">
         <li>{{product.price}}</li>
 
@@ -29,16 +30,34 @@
         <button v-on:click="updateProduct('pre-2')">product 2</button>
         <button v-on:click="updateProduct('pre-3')">product 3</button>
 
-       
-        <component-x></component-x>
     </div>
 
 
-    <div class="component-x"><h2>{{msg}}</h2></div>
-    
+    <div id="app2">
+        <li>{{product.price}}</li>
 
+        <button v-on:click="updateProduct('pre-1')">product 1</button>
+        <button v-on:click="updateProduct('pre-2')">product 2</button>
+        <button v-on:click="updateProduct('pre-3')">product 3</button>
+        
+    </div>
+
+
+    <div id="app3">
+        <h2>Default Headline</h2>
+        <p>abcd</p>
+    </div>
+
+
+    <div class="component-x" id="component-x"><h2>Some text</h2></div>
+
+    <!-- Template-->
+
+    <script type="x-template" id="x-template">
+        <h2>{{headline}}</h2>
+    </script>
+    
     <script src="script/vue.js"></script>
-    <script src="script/vuex.js"></script>
     <script src="script/app.js"></script>
 </body>
 </html>
