@@ -44,8 +44,11 @@
 
 
     <div id="app3">
-        <h2>Default Headline</h2>
-        <p>abcd</p>
+        <div class="app">
+            <h2>Fallback Headline 1</h2>
+            <h2>Fallback Headline 2</h2>
+        </div>
+        <!-- Default content is replaced completely even when hydrating -->
     </div>
 
 
@@ -53,8 +56,8 @@
 
     <!-- Template-->
 
-    <script type="x-template" id="x-template">
-        <h2>{{headline}}</h2>
+    <script type="text/x-template" id="headline-template">
+        <h2>{{title}}</h2>
     </script>
     
     <script src="script/vue.js"></script>

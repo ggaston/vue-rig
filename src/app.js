@@ -1,24 +1,25 @@
 // Import Vue for unit test. Jest requires 
 import Vue from './vue.js';
 
-Vue.component('component-x', {
-    template: '#component-x'
+Vue.component('headline', {
+    props: ['title'],
+    template: '#headline-template'
 })
 
 var vm = window.vm = new Vue({
     /**
-     * Mount element instead of hooking with el prop.
-     */
-    /**
      * Data should be only state.
      * {} 
      */
-    template: '#x-template',
+    template: '<div class="app"><headline v-for="headline in headlines" v-bind:title="headline.title"></headline></div>',
     data: function() {
         return {
             product: {},
             priceList: {},
-            headline: "Headline"
+            headlines: [
+                {title: 'Headline 1'}, 
+                {title: 'Headline 2'}
+            ]
         }        
     },
     created() {
@@ -52,4 +53,4 @@ var vm = window.vm = new Vue({
 });
 
 
-vm.$mount('#app3', true);
+vm.$mount('#app3');
