@@ -10,20 +10,34 @@
         template: '#headline-template'
     });
 
+    Vue.component('device-selector', {
+        props: ['count'],
+        template: '#device-selector'
+    });
+
+    Vue.component('price-box', {
+        props: ['price'],
+        template: '#price-box'
+    });
+
     var vm = window.vm = new Vue({
-        /**
-         * Mount element instead of hooking with el prop.
-         */
         /**
          * Data should be only state.
          * {} 
          */
-        template: '<div class="app"><headline v-for="headline in headlines" v-bind:title="headline.title"></headline></div>',
+        template: `
+                <div class="app">
+                    <headline v-for="headline in headlines" v-bind:title="headline.title"></headline>
+                    <div class="price-box-container">
+                        <device-selector v-on:increment="incrementDevices" v-on:decrement="decrementDevices" v-bind:count="count"></device-selector>
+                        <price-box v-bind:price="product.price"></price-box>
+                    </div>
+                </div>
+              `,
         data: function() {
             return {
-                product: {},
+                count: 1,
                 priceList: {},
-                title: 'Title 0',
                 headlines: [
                     {title: 'Headline 1'}, 
                     {title: 'Headline 2'}
@@ -33,11 +47,21 @@
         created() {
             // TODO: Use ref attr for pricelist element
             this.priceList = document.getElementById('pricelist-pre');
-            this.products = JSON.parse(this.priceList.innerHTML)['pre-1'];
+            this.product = JSON.parse(this.priceList.innerHTML)['pre'];
+        },
+        computed: {
+            product: {
+                get: function() {
+                    return JSON.parse(this.priceList.innerHTML)['pre-' + this.count];
+                },
+                set: function() {
+                    return JSON.parse(this.priceList.innerHTML)['pre-' + this.count];
+                }
+            }
         },
         methods: {
             updateProduct: function(productId){
-                this.product = JSON.parse(this.priceList.innerHTML)[productId];
+                this.product = JSON.parse(this.priceList.innerHTML)[productId + '-' + this.count];
             },
             incrementMaintenance: function() {
 
@@ -46,10 +70,10 @@
 
             },
             incrementDevices: function() {
-
+                this.count = this.count + 1;
             },
             decrementDevices: function() {
-                
+                this.count = this.count - 1;
             },
             setMaintenance: function(maintennace) {
 

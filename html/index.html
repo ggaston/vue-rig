@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
 
-    <script id="pricelist-pre" type="application/json">
-        {
-           "pre-1" : { "price": 123 },
-           "pre-2" : { "price": 234 },
-           "pre-3" : { "price": 345 }
-        }
-    </script>
-    <script id="pricelist-ise" type="application/json">
-        {
-           "ise-1" : { "price": 666 },
-           "ise-2" : { "price": 777 },
-           "ise-3" : { "price": 999 }
-        }
-    </script>
+<body>
 
     <div id="app">
         <li>{{product.price}}</li>
@@ -39,7 +26,7 @@
         <button v-on:click="updateProduct('pre-1')">product 1</button>
         <button v-on:click="updateProduct('pre-2')">product 2</button>
         <button v-on:click="updateProduct('pre-3')">product 3</button>
-        
+
     </div>
 
 
@@ -52,15 +39,59 @@
     </div>
 
 
-    <div class="component-x" id="component-x"><h2>Some text</h2></div>
+    <div class="component-x" id="component-x">
+        <h2>Some text</h2>
+    </div>
 
     <!-- Template-->
 
     <script type="text/x-template" id="headline-template">
         <h2>{{title}}</h2>
     </script>
-    
+
+    <script type="text/x-template" id="device-selector">
+        <div class="device-selector">
+            <div v-on:click="$emit('decrement')">-</div>
+            <input type="text" v-bind:value="count">
+            <div v-on:click="$emit('increment')">+</div>
+        </div>    
+    </script>
+
+    <script type="text/x-template" id="price-box">
+        <div>{{price}}</div>
+    </script>
+
+    <!-- pricelists -->
+
+    <script id="pricelist-pre" type="application/json">
+        {
+           "pre-1" : { "price": 123 },
+           "pre-2" : { "price": 234 },
+           "pre-3" : { "price": 345 }
+        }
+    </script>
+
+    <script id="pricelist-pre-multiplex" type="application/json">
+        {
+           "pre-1-12" : { "price": 123 },
+           "pre-1-24" : { "price": 150 },
+           "pre-1-36" : { "price": 190 },
+           "pre-2-12" : { "price": 234 },
+           "pre-2-24" : { "price": 250 },
+           "pre-2-36" : { "price": 290 },
+           "pre-3-12" : { "price": 345 },
+           "pre-3-24" : { "price": 350 },
+           "pre-3-36" : { "price": 390 }
+        }
+    </script>
+
+    <script id="products" type="application/json">
+        ["pre-1", "pre-2", "pre-3"]
+    </script>
+
+
     <script src="script/vue.js"></script>
     <script src="script/app.js"></script>
 </body>
+
 </html>
