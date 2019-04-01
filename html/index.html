@@ -11,84 +11,40 @@
 <body>
 
     <div id="app">
-        <li>{{product.price}}</li>
-
-        <button v-on:click="updateProduct('pre-1')">product 1</button>
-        <button v-on:click="updateProduct('pre-2')">product 2</button>
-        <button v-on:click="updateProduct('pre-3')">product 3</button>
-
+        <noscript>Fallback content</noscript>
     </div>
 
+    <!-- Components templates -->
 
-    <div id="app2">
-        <li>{{product.price}}</li>
-
-        <button v-on:click="updateProduct('pre-1')">product 1</button>
-        <button v-on:click="updateProduct('pre-2')">product 2</button>
-        <button v-on:click="updateProduct('pre-3')">product 3</button>
-
-    </div>
-
-
-    <div id="app3">
-        <div class="app">
-            <h2>Fallback Headline 1</h2>
-            <h2>Fallback Headline 2</h2>
-        </div>
-        <!-- Default content is replaced completely even when hydrating -->
-    </div>
-
-
-    <div class="component-x" id="component-x">
-        <h2>Some text</h2>
-    </div>
-
-    <!-- Template-->
-
-    <script type="text/x-template" id="headline-template">
-        <h2>{{title}}</h2>
-    </script>
-
-    <script type="text/x-template" id="device-selector">
-        <div class="device-selector">
-            <div v-on:click="$emit('decrement')">-</div>
+    <script type="text/x-template" id="counter">
+        <div class="counter">
+            <button v-on:click="$emit('decrement')">-</button>
             <input type="text" v-bind:value="count">
-            <div v-on:click="$emit('increment')">+</div>
+            <button v-on:click="$emit('increment')">+</button>
         </div>    
     </script>
 
-    <script type="text/x-template" id="price-box">
-        <div>{{price}}</div>
+    <script type="text/x-template" id="priceBox">
+        <div class="price-box">
+            <p>Price: {{price}}, Maintenance: {{maintenance}}</p>
+        </div>
     </script>
 
     <!-- pricelists -->
 
-    <script id="pricelist-pre" type="application/json">
+    <script id="priceList" type="application/json">
         {
-           "pre-1" : { "price": 123 },
-           "pre-2" : { "price": 234 },
-           "pre-3" : { "price": 345 }
+           "pre-1-12" : { "price": 123, "maintenance": 12, "seats" : 1 },
+           "pre-1-24" : { "price": 150, "maintenance": 24, "seats" : 1 },
+           "pre-1-36" : { "price": 190, "maintenance": 36, "seats" : 1 },
+           "pre-2-12" : { "price": 234, "maintenance": 12, "seats" : 2 },
+           "pre-2-24" : { "price": 250, "maintenance": 24, "seats" : 2 },
+           "pre-2-36" : { "price": 290, "maintenance": 36, "seats" : 2 },
+           "pre-3-12" : { "price": 345, "maintenance": 12, "seats" : 3 },
+           "pre-3-24" : { "price": 350, "maintenance": 24, "seats" : 3 },
+           "pre-3-36" : { "price": 390, "maintenance": 36, "seats" : 3 }
         }
     </script>
-
-    <script id="pricelist-pre-multiplex" type="application/json">
-        {
-           "pre-1-12" : { "price": 123 },
-           "pre-1-24" : { "price": 150 },
-           "pre-1-36" : { "price": 190 },
-           "pre-2-12" : { "price": 234 },
-           "pre-2-24" : { "price": 250 },
-           "pre-2-36" : { "price": 290 },
-           "pre-3-12" : { "price": 345 },
-           "pre-3-24" : { "price": 350 },
-           "pre-3-36" : { "price": 390 }
-        }
-    </script>
-
-    <script id="products" type="application/json">
-        ["pre-1", "pre-2", "pre-3"]
-    </script>
-
 
     <script src="script/vue.js"></script>
     <script src="script/app.js"></script>

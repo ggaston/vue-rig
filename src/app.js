@@ -1,84 +1,58 @@
 // Import Vue for unit test. Jest requires 
 import Vue from './vue.js';
 
-Vue.component('headline', {
-    props: ['title'],
-    template: '#headline-template'
-})
+// Component seats-selector
 
-Vue.component('device-selector', {
+Vue.component('counter', {
     props: ['count'],
-    template: '#device-selector'
+    template: '#counter'
 })
 
 Vue.component('price-box', {
-    props: ['price'],
-    template: '#price-box'
+    props: ['price', 'maintenance'],
+    template: '#priceBox'
 })
 
-var vm = window.vm = new Vue({
-    /**
-     * Data should be only state.
-     * {} 
-     */
+let vm = new Vue({
+
     template: `
-                <div class="app">
-                    <headline v-for="headline in headlines" v-bind:title="headline.title"></headline>
-                    <div class="price-box-container">
-                        <device-selector v-on:increment="incrementDevices" v-on:decrement="decrementDevices" v-bind:count="count"></device-selector>
-                        <price-box v-bind:price="product.price"></price-box>
-                    </div>
+                <div class="price-box-container">
+                    <counter 
+                        v-on:increment="incrementSeats" 
+                        v-on:decrement="decrementSeats" 
+                        v-bind:count="seats"></counter>
+                    <price-box 
+                        v-for="product in products" 
+                        :key="product.maintenance" 
+                        v-bind:price="product.price" 
+                        v-bind:maintenance="product.maintenance"></price-box>
                 </div>
               `,
     data: function() {
         return {
-            count: 1,
+            seats: 1,
             priceList: {},
-            headlines: [
-                {title: 'Headline 1'}, 
-                {title: 'Headline 2'}
-            ]
         }        
     },
     created() {
         // TODO: Use ref attr for pricelist element
-        this.priceList = document.getElementById('pricelist-pre');
-        this.product = JSON.parse(this.priceList.innerHTML)['pre'];
+        const priceList = JSON.parse(document.getElementById('priceList').innerHTML);
+        this.priceList = Object.keys(priceList).map(key => priceList[key]);
     },
     computed: {
-        product: {
-            get: function() {
-                return JSON.parse(this.priceList.innerHTML)['pre-' + this.count];
-            },
-            set: function() {
-                return JSON.parse(this.priceList.innerHTML)['pre-' + this.count];
-            }
+        products: function() {
+            return this.priceList.filter(product => (product.seats === this.seats) ? true : false);
         }
     },
     methods: {
-        updateProduct: function(productId){
-            this.product = JSON.parse(this.priceList.innerHTML)[productId + '-' + this.count];
+        incrementSeats: function() {
+            this.seats = this.seats + 1;
         },
-        incrementMaintenance: function() {
-
-        },
-        decrementMaintenance: function() {
-
-        },
-        incrementDevices: function() {
-            this.count = this.count + 1;
-        },
-        decrementDevices: function() {
-            this.count = this.count - 1;
-        },
-        setMaintenance: function(maintennace) {
-
-        },
-        setDevices: function(devices) {
-        
+        decrementSeats: function() {
+            this.seats = this.seats - 1;
         }
     }
 });
 
+vm.$mount('#app');
 
-vm.$mount('#app3');
