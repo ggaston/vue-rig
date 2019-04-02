@@ -47,10 +47,10 @@ let vm = new Vue({
     },
     methods: {
         incrementSeats: function() {
-            this.index++;
+            (this.index === this.seatsRange.length - 1) ? this.index = 0 :  this.index++;
         },
         decrementSeats: function() {
-            this.index--;
+            (this.index === 0) ? this.index = this.seatsRange.length - 1 : this.index--;            
         }
     }
 });
