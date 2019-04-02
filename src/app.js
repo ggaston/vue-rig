@@ -14,23 +14,12 @@ Vue.component('price-box', {
 })
 
 let vm = new Vue({
-
-    template: `
-                <div class="price-box-container">
-                    <counter 
-                        v-on:increment="incrementSeats" 
-                        v-on:decrement="decrementSeats" 
-                        v-bind:count="seats"></counter>
-                    <price-box 
-                        v-for="product in products" 
-                        :key="product.maintenance" 
-                        v-bind:price="product.price" 
-                        v-bind:maintenance="product.maintenance"></price-box>
-                </div>
-              `,
+    template: '#actionBox',
     data: function() {
         return {
-            seats: 1,
+            index: 0,
+            seatsRange: [],
+            maintenance: [],
             priceList: {},
         }        
     },
@@ -38,18 +27,30 @@ let vm = new Vue({
         // TODO: Use ref attr for pricelist element
         const priceList = JSON.parse(document.getElementById('priceList').innerHTML);
         this.priceList = Object.keys(priceList).map(key => priceList[key]);
+        // populate seats
+        Object.keys(priceList).forEach(key => {
+            let found = this.seatsRange.find(item => {
+                return priceList[key].seats === item
+            });
+            if (!found) {
+                this.seatsRange.push(priceList[key].seats);
+            }
+        });
     },
     computed: {
         products: function() {
-            return this.priceList.filter(product => (product.seats === this.seats) ? true : false);
+            return this.priceList.filter(product => (product.seats === this.seatsRange[this.index]) ? true : false);
+        },
+        seats: function() {
+            return this.seatsRange[this.index]
         }
     },
     methods: {
         incrementSeats: function() {
-            this.seats = this.seats + 1;
+            this.index++;
         },
         decrementSeats: function() {
-            this.seats = this.seats - 1;
+            this.index--;
         }
     }
 });

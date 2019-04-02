@@ -16,7 +16,22 @@
 
     <!-- Components templates -->
 
-    <script type="text/x-template" id="counter">
+    <script id="actionBox" type="text/x-template">
+        <div class="actionbox">
+        <counter 
+            v-on:increment="incrementSeats" 
+            v-on:decrement="decrementSeats" 
+            v-bind:count="seats"/>
+        <price-box 
+            v-for="product in products" 
+            :key="product.maintenance" 
+            v-bind:price="product.price" 
+            v-bind:maintenance="product.maintenance"/>
+        </div>
+    </script>
+
+
+    <script id="counter" type="text/x-template">
         <div class="counter">
             <button v-on:click="$emit('decrement')">-</button>
             <input type="text" v-bind:value="count">
@@ -24,7 +39,7 @@
         </div>    
     </script>
 
-    <script type="text/x-template" id="priceBox">
+    <script id="priceBox" type="text/x-template">
         <div class="price-box">
             <p>Price: {{price}}, Maintenance: {{maintenance}}</p>
         </div>
@@ -37,12 +52,12 @@
            "pre-1-12" : { "price": 123, "maintenance": 12, "seats" : 1 },
            "pre-1-24" : { "price": 150, "maintenance": 24, "seats" : 1 },
            "pre-1-36" : { "price": 190, "maintenance": 36, "seats" : 1 },
-           "pre-2-12" : { "price": 234, "maintenance": 12, "seats" : 2 },
-           "pre-2-24" : { "price": 250, "maintenance": 24, "seats" : 2 },
-           "pre-2-36" : { "price": 290, "maintenance": 36, "seats" : 2 },
-           "pre-3-12" : { "price": 345, "maintenance": 12, "seats" : 3 },
-           "pre-3-24" : { "price": 350, "maintenance": 24, "seats" : 3 },
-           "pre-3-36" : { "price": 390, "maintenance": 36, "seats" : 3 }
+           "pre-3-12" : { "price": 234, "maintenance": 12, "seats" : 3 },
+           "pre-3-24" : { "price": 250, "maintenance": 24, "seats" : 3 },
+           "pre-3-36" : { "price": 290, "maintenance": 36, "seats" : 3 },
+           "pre-5-12" : { "price": 345, "maintenance": 12, "seats" : 5 },
+           "pre-5-24" : { "price": 350, "maintenance": 24, "seats" : 5 },
+           "pre-5-36" : { "price": 390, "maintenance": 36, "seats" : 5 }
         }
     </script>
 
